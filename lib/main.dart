@@ -1,21 +1,34 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
+import 'package:iconsax/iconsax.dart';
+import 'package:swiper/utils/logger.dart';
 
-void main() {
-  runApp(const MyApp());
-}
+// ignore: constant_identifier_names
+const TAG = 'HomePage';
+var random = Random();
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+void main() => runApp(const InstaGallery());
 
-  // This widget is the root of your application.
+class InstaGallery extends StatelessWidget {
+  const InstaGallery({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        useMaterial3: true,
       ),
-      home: const Text("Hello Rohan"),
+      home: Scaffold(
+        body: const Center(
+          child: Text('Material Text'),
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () => Log.e(TAG, "FAB Pressed"),
+          child: const Icon(Iconsax.folder),
+        ),
+      ),
     );
   }
 }
