@@ -1,34 +1,31 @@
-import 'dart:math';
-
+import 'package:get/get.dart';
 import 'package:flutter/material.dart';
-import 'package:iconsax/iconsax.dart';
-import 'package:swiper/utils/logger.dart';
+
+import 'package:swiper/pages/routes.dart';
+import 'package:swiper/utils/database.dart';
 
 // ignore: constant_identifier_names
 const TAG = 'HomePage';
-var random = Random();
 
-void main() => runApp(const InstaGallery());
+void main() async {
+  await initDatabase();
+  runApp(const InstaGallery());
+}
 
 class InstaGallery extends StatelessWidget {
   const InstaGallery({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
+    return GetMaterialApp(
       theme: ThemeData(
         useMaterial3: true,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
+        splashColor: Colors.transparent,
       ),
-      home: Scaffold(
-        body: const Center(
-          child: Text('Material Text'),
-        ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () => Log.e(TAG, "FAB Pressed"),
-          child: const Icon(Iconsax.folder),
-        ),
-      ),
+      initialRoute: '/',
+      routes: routes,
+      debugShowCheckedModeBanner: false,
     );
   }
 }
